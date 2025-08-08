@@ -1,8 +1,19 @@
 import subjectModel from '../models/subjectModel.js'
+import userModel from '../models/userModel.js'
 
 export const createSubject = async (req, res) => {
     try {
         const body = req.body
+        const user = req.user
+        const isUser = await userModel.findOne().where('_id').equals(user.id)
+        console.log(isUser);
+
+        if (isUser.role !== "admin") {
+            return res.status(403).json({
+                message: 'Only Admin Can Create Subject'
+            })
+        }
+
         const subject = await subjectModel.create({ name: body.name })
 
         await subject.save()
@@ -45,8 +56,17 @@ export const updateSubject = async (req, res) => {
     try {
         const id = req.params.id
         const body = req.body
+        const user = req.user
+        const isUser = await userModel.findOne().where('_id').equals(user.id)
+        console.log(isUser);
 
-        const subject = await subjectModel.findByIdAndUpdate(id, {
+        if (isUser.role !== "admin") {
+            return res.status(403).json({
+                message: 'Only Admin Can Update Subject'
+            })
+        }
+
+        await subjectModel.findByIdAndUpdate(id, {
             name: body.name
         })
 

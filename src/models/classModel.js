@@ -7,21 +7,21 @@ const classModel = new mongoose.Schema({
     },
     description: {
         type: String,
-        required: [true, "Your email address is required"]
+        required: [true, "Your description is required"]
     },
-    classAdvisor: {
+    classAdvisorId: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "User", 
         required: [true, "Your class advisor is required"]
     },
     subjects:[
         {
-            subject: {
+            subjectId: {
                 type: mongoose.Schema.Types.ObjectId,
                 ref: "Subject",
                 required: [true, "Your subject is required"]
             },
-            teacher: {
+            teacherId: {
                 type: mongoose.Schema.Types.ObjectId,
                 ref: "User",
                 required: [true, "Your teacher is required"]

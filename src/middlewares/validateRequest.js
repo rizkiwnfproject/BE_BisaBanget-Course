@@ -1,7 +1,7 @@
 import { ZodError } from "zod";
 
 export const validateRequest = (schema) => async (req, res, next) => {
-    console.log("percobaan 1")
+    // console.log("percobaan 1")
     try {
         schema.parse(req.body);
         // const validated = schema.parse(req.body);
