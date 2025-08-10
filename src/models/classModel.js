@@ -11,20 +11,18 @@ const classModel = new mongoose.Schema({
     },
     classAdvisorId: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: "User", 
+        ref: "User",
         required: [true, "Your class advisor is required"]
     },
-    subjects:[
+    subjects: [
         {
             subjectId: {
                 type: mongoose.Schema.Types.ObjectId,
                 ref: "Subject",
-                required: [true, "Your subject is required"]
             },
             teacherId: {
                 type: mongoose.Schema.Types.ObjectId,
                 ref: "User",
-                required: [true, "Your teacher is required"]
             },
         }
     ]

@@ -5,17 +5,18 @@ export const signUpSchema = z.object({
     name: z.string().min(3),
     email: z.string().email(),
     password: z.string().min(5),
-    role: z.enum(['admin', 'teacher', 'student'])
+    // role: z.enum(['admin', 'teacher', 'student'])
 })
 
 // mengambil dari signupschema tp name dan rolennya gausah
-export const signInSchema = signUpSchema.omit({ name: true, role: true })
+export const signInSchema = signUpSchema.omit({ name: true })
 
 
 // subject
 export const subjectSchema = z.object({
     name: z.string().min(3)
 })
+
 
 // class
 export const classSchema = z.object({
@@ -27,6 +28,8 @@ export const classSchema = z.object({
             subjectId: z.string().min(5),
             teacherId: z.string().min(5),
         })
-    ),
-})
 
+    )
+        .optional()
+        .default([])
+})
